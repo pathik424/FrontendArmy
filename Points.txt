@@ -1,0 +1,44 @@
+Basic
+Comment Section
+Variable (single & Multiple Declare)
+Vardump
+Scope (global, local, global word, static)
+String
+Php Math
+Magic Constants
+if else
+Switch Case
+While Loops
+DoWhile
+ForLoop
+ForEachLoop
+Php Function
+Array
+OopsFunction
+OopsFunction Class & Object
+OopsAccess Modifier
+Oops Inheritance
+Oops Constructed
+Oops Destructed
+Oops Overiding
+Oops Abstract
+Oops Interface
+Oops Staticmember
+Oops Trait
+Oops Typehinting
+1 loops namespace
+2 loops namespace
+3 loops namespace
+Method Chaining
+Magic Method
+Oops Constants
+
+
+
+
+
+
+
+
+
+
