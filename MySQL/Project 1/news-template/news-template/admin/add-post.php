@@ -35,13 +35,17 @@
 
                             $result = mysqli_query($conn, $sql) or die('query Unsuccesfull');
 
-                            // if (mysqli_num_rows($result) > 0) {
+                            if (mysqli_num_rows($result) > 0) {
 
-                                if ($row = mysqli_fetch_assoc($result)) {
+                                while ($row = mysqli_fetch_assoc($result)) {
 
-                                    ?>
-                                          <option value="<?php echo $row['category_id'] ?>">"<?php echo $row['category_name'] ?>"</option>
-                                <?php } ?>  
+                               
+                                         echo "<option>{$row['category_name']}</option>";
+                               }
+                            //    echo $row;
+                            //    exit;
+                            } 
+                            ?>  
                         </select>
                     </div>
                     <div class="form-group">

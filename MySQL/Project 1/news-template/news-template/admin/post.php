@@ -12,6 +12,20 @@
 
               $conn = mysqli_connect("localhost","root","","news_site") or die("Connection Failed");
               
+
+              $limit =4;
+              if(isset($_GET['page']))
+              {
+                $page = $_GET['page'];
+                
+              }
+              else
+              {
+                $page = 1;
+      
+              }
+              $offset = ($page - 1) * $limit;
+
               //Pagination
             //   $limit =3;
             //   $page = $_GET['page'];
@@ -20,7 +34,7 @@
               $sql = "SELECT * FROM post 
               LEFT JOIN category on post.category = category.category_id
               LEFT JOIN user on post.author = user.user_id
-              ORDER BY post.post_id";
+              ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
 
             //   echo $sql;
             //   exit;
@@ -70,12 +84,62 @@
 
                       </tbody>
                   </table>
-                  <ul class='pagination admin-pagination'>
+                </div>
+                <?php
+             $sql2 = "SELECT * FROM user";
+
+             $result1 = mysqli_query($conn, $sql2) or die("Query Failed");
+
+             if (mysqli_num_rows($result1) > 0) {
+
+               $total_records = mysqli_num_rows($result1);
+              
+               $total_page = ceil($total_records / $limit);
+
+
+
+               echo '<ul class= "pagination admin-pagination">';
+
+
+               // Jetlo Data Hase etlo etla page reload thata rehse For Loop Ma
+               
+               if($page > 1){
+                 
+                 echo '<li><a href="users.php?page='.($page - 1).'">Prev</a></li>';
+               }
+
+
+               for ($i = 1; $i <= $total_page; $i++) {
+                 
+                 // Jena Par Click Karso Ena Par Dekhase 
+                 if($i == $page){
+                   
+                   $active = "active";
+                   
+                 }
+                 else{
+                   
+                   $active = "";
+                 }  
+                 
+                 
+                 echo '<li class="'.$active.' "><a href="users.php?page=' . $i . '">' . $i . '</a></li>';
+                 
+               }
+               if($total_page > $page){
+
+                 echo '<li><a href="users.php?page='.($page + 1).'">Next</a></li>';
+               
+               }
+               echo  '</ul>';
+             }
+
+     ?>
+                  <!-- <ul class='pagination admin-pagination'>
                       <li class="active"><a>1</a></li>
                       <li><a>2</a></li>
                       <li><a>3</a></li>
-                  </ul>
-              </div>
+                  </ul> -->
               </div>
               </div>
               </div>

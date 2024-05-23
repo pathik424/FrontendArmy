@@ -55,7 +55,11 @@ mysqli_close($conn);
 
         $post_id = $_GET['id'];
         // echo $post_id;
-        $sql = "SELECT * FROM post WHERE post_id = $post_id";
+        $sql = "SELECT post.post_id,post.title, post.description, post.post_img, 
+                category.category_name,post.category FROM post 
+                LEFT JOIN category ON post.category = category.category_id
+                LEFT JOIN user ON post.author = user.user_id
+                WHERE post.post_id = {$post_id}";
         $result = mysqli_query($conn, $sql) or die('query Unsuccesfull');
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -84,7 +88,32 @@ mysqli_close($conn);
             <div class="form-group">
                 <label for="exampleInputCategory">Category</label>
                 <select class="form-control" name="category">
-                    <option value="<?php echo $row['category'] ?>"><?php echo $row['category'] ?></option>         
+                    <?php
+                    
+
+                    $conn = mysqli_connect("localhost", "root", "", "news_site") or die("Connection Failed");
+
+                    $sql1 = "SELECT * FROM category";
+
+                    $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
+
+                    if (mysqli_num_rows($result1) > 0) {
+
+                        while ($row1 = mysqli_fetch_assoc($result1)) {
+
+                            if($row['category'] == $row1['category_id']){
+                                $selected = "selected";
+                            }
+                            else
+                            {
+                                echo "<option {$selected} value='{$row1['category_id']}'>{$row1['category_name']}</option>";
+                            }
+
+                        }
+                    }
+                             
+                    
+                    ?>
                 </select>
             </div>
             <div class="form-group">
