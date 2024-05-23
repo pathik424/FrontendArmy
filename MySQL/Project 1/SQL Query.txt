@@ -1,0 +1,4 @@
+1. Select query :
+
+// SELECT * FROM Customers; //
+// SELECT CustomerName, City FROM Customers; //

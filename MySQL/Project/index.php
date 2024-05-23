@@ -68,6 +68,18 @@ if (mysqli_num_rows($result) > 0) {
     </tr>
     <?php } ?>    
   </tbody>
+  <?php  ?>
 </table>
-<?php } ?>
 
+<?php
+
+       }
+else
+{
+?>
+                <tr>
+                    <td colspan="5">No Data Available</td>
+                </tr>
+<?php
+}
+?>

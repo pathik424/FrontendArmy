@@ -21,7 +21,7 @@ $result = mysqli_query($conne, $sql2) or die('query Unsuccesfull');
 // exit;
 
 
-header("Location: http://localhost/Frontend%20Army/MySQL/Project/index.php");
+header("Location: http://localhost/FrontendArmy/MySQL/Project/index.php");
 
 mysqli_close($conn);
 
