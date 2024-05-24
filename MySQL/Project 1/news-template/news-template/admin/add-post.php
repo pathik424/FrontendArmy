@@ -35,7 +35,7 @@
 
                             $result = mysqli_query($conn, $sql) or die('query Unsuccesfull');
 
-                            if (mysqli_num_rows($result) > 0) {
+                            // if (mysqli_num_rows($result) > 0) {
 
                                 while ($row = mysqli_fetch_assoc($result)) {
 
@@ -44,7 +44,7 @@
                                }
                             //    echo $row;
                             //    exit;
-                            } 
+                            // } 
                             ?>  
                         </select>
                     </div>

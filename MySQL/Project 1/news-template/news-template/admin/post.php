@@ -34,7 +34,7 @@
               $sql = "SELECT * FROM post 
               LEFT JOIN category on post.category = category.category_id
               LEFT JOIN user on post.author = user.user_id
-              ORDER BY post.post_id DESC LIMIT {$offset},{$limit}";
+              ORDER BY post.post_id ASC LIMIT {$offset},{$limit}";
 
             //   echo $sql;
             //   exit;
@@ -105,7 +105,7 @@
                
                if($page > 1){
                  
-                 echo '<li><a href="users.php?page='.($page - 1).'">Prev</a></li>';
+                 echo '<li><a href="post.php?page='.($page - 1).'">Prev</a></li>';
                }
 
 
@@ -123,12 +123,12 @@
                  }  
                  
                  
-                 echo '<li class="'.$active.' "><a href="users.php?page=' . $i . '">' . $i . '</a></li>';
+                 echo '<li class="'.$active.' "><a href="post.php?page=' . $i . '">' . $i . '</a></li>';
                  
                }
                if($total_page > $page){
 
-                 echo '<li><a href="users.php?page='.($page + 1).'">Next</a></li>';
+                 echo '<li><a href="post.php?page='.($page + 1).'">Next</a></li>';
                
                }
                echo  '</ul>';

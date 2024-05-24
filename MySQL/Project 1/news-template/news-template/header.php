@@ -34,12 +34,54 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+              <?php
+
+             include "config.php";
+
+            if(isset($_GET['cid'])){
+
+                $cat_id = $_GET['cid']; 
+            }
+
+               /// jo post count nai hoy to to e header ma batavse j nai
+             $sql = "SELECT * FROM category WHERE post > 0";
+
+             $result = mysqli_query($conn, $sql) or die('query Unsuccesfull : category');
+
+             if (mysqli_num_rows($result) > 0) {
+
+             
+
+              ?>
+
+
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+<?php
+                while ($row = mysqli_fetch_assoc($result)){
+
+                    $active = "";
+
+                    if(isset($_GET['cid'])){
+
+                            // if etle chalayu bcz if hase tojena par select karisu ena par colour chnge thase
+                    if($row['category_id'] == $cat_id){
+                        $active = 'active';
+                     }else
+                     {
+                         $active ="";
+                     }
+
+                    }
+
+
+
+
+                
+     
+                   echo  "<li><a class='{$active}' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a></li>";
+                     }?>
                 </ul>
+                <?php }?>
             </div>
         </div>
     </div>
