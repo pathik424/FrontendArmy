@@ -119,18 +119,101 @@
      *** Cross Join : (First Table no data match karse all time)
 
      SELECT * FROM post CROSS JOIN category
+
+
+17. Group BY : (Counting Karse Ketli Post Che specified Category ni)
+
+     SELECT category.category_name,COUNT(category) FROM post INNER JOIN category ON post.category = category.category_id GROUP BY category;
      
+ 
+     
+18. HAVING : (Counting > 3 table hase to show thase)
+
+     SELECT category.category_name,COUNT(category) FROM post INNER JOIN category ON post.category = category.category_id GROUP BY category HAVING COUNT(post.category) > 2;
+
+19. Exist (E check Karse ke ena related ketli post che )
+
+     SELECT category_name FROM category WHERE EXISTS (SELECT post_id FROM post WHERE category_name IN ('Bollywood') );
+
+20. Case :
+
+                 SELECT category_id, post,
+            CASE
+                 WHEN post > 0 THEN 'The quantity is greater than 3'
+                 WHEN post = 3 THEN 'The quantity is 3'
+                 ELSE 'The quantity is under 30'
+           END AS QuantityText
+           FROM category;
 
 
+21. Primary Key / Foreign Key :
 
+1st Table /// Primary + Foreign Key:::
+
+CREATE TABLE students
+( id INT NOT NULL UNIQUE AUTO_INCREMENT,
+name VARCHAR(100) not null,
+email VARCHAR(100) not null,
+city_id  int null,
+PRIMARY KEY(id), 
+Foreign KEY (city_id) REFERENCES city(cid))
+
+2nd Table /// Primary Key
+
+               CREATE TABLE city
+               ( cid INT PRIMARY KEY AUTO_INCREMENT,
+               city_name VARCHAR(50) not null 
+               )
+               
+               
+                LEFT JOIN For Testing :
+
+                SELECT students.name,students.email,city.city_name FROM students LEFT JOIN city ON students.id = city.cid
+ 
+   
+ 22. Check Option (single Column ma koi condition check karvase jo sachi hase to j value e column ma add thase) :
+      
+       Create Table test(
+         TID INT PRIMARY KEY AUTO_INCREMENT,
+         NAME VARCHAR(50),
+         AGE VARCHAR(50) CHECK(AGE > 18)        
+         )
+
+ 23. Default Option (A single colum ma value set karse Default By automatic jyare add karisu tyare e j value avse)
+ 
+        Create Table test1(
+         TID INT PRIMARY KEY AUTO_INCREMENT,
+         NAME VARCHAR(50),
+         AGE VARCHAR(50) DEFAULT 18        
+         )  
+
+24. String Functions :
+
+      1. UPPER/UCASE (Badha Word Capital Thai Jase)
+          
+           SELECT id,UPPER(name) AS NAME ,email FROM students 
+           SELECT id,UCASE(name) AS NAME ,email FROM students 
+           
+      2. Character Lengh (Characters ma ketla word che e count karse)       
+           
+           SELECT id,name,CHARACTER_LENGTH(name) AS Characters FROM students 
+           SELECT id,name,LENGTH(name) AS Characters FROM students 
+
+      3. CONCAT (Concat Be Column ne ek j column ma show karse)
+      
+           SELECT id, CONCAT(name,"-", email) AS NAME FROM students
+           SELECT CONCAT("Pathik","Nil","Nirav","Yash") AS NAME; // badha j string a colum ane 1 row ma j ai jase
+           SELECT CONCAT_WS(" - ","Pathik","Nil","Nirav","Yash") AS NAME; // badha ni vachche - Avi Jase
+           SELECT LTRIM(" Pathik   ")AS NAME;
+           SELECT RTRIM(" Pathik   ")AS NAME;
+           SELECT POSITION("a" IN "Pathik")AS NAME; answer 2 bcause a pathik ma 2nd ave che
+           SELECT INSTR("Yahoo Baba Baba", "Baba")AS NAME; answer 7 bcause a Baba ma 2nd ave che
+           SELECT LOCATE("B","Yahoo Baba Baba")AS NAME; answer 7 bcause a Baba ma 2nd ave che
 
  
-
    
-   
-   
-   
-   
+                
+                
    
    
    
@@ -182,4 +265,8 @@
     
 
 */
+
+
  ?>
+
+
